@@ -22,9 +22,9 @@ function TodoList(props) {
                     })}
                 </div>
                 <div>
-                    <button onClick={()=>{props.filteredTasks("all")}}>all</button>
-                    <button>active</button>
-                    <button>completed</button>
+                    <button onClick={()=>{props.changeFilter("all")}}>all</button>
+                    <button onClick={()=>{props.changeFilter("active")}}>active</button>
+                    <button onClick={()=>{props.changeFilter("completed")}}>completed</button>
                 </div>
             </div>
         </div>

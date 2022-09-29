@@ -5,10 +5,10 @@ import {useState} from "react";
 function App() {
 
     let initTasks = [
-        {id: v1(), title: "React", isDone: true, },
-        {id: v1(), title: "Redux", isDone: true, },
-        {id: v1(), title: "MobX", isDone: false, },
-        {id: v1(), title: "SCSS", isDone: true, },
+        {id: v1(), title: "React", isDone: false,},
+        {id: v1(), title: "Redux", isDone: false,},
+        {id: v1(), title: "MobX", isDone: true,},
+        {id: v1(), title: "SCSS", isDone: true,},
     ]
     let [tasks, setTasks] = useState(initTasks);
     let [filter, setFilter] = useState("all");
@@ -21,19 +21,27 @@ function App() {
         let newTask = {id: v1(), title: "React", isDone: true};
         setTasks([...tasks, newTask])
     }
-    const filteredTasks = () => {
-    if(filter==="all"){
-        setTasks([...tasks]);
+    const changeFilter = (value) => {
+        setFilter(value)
     }
+
+    let tasksForTodoList = tasks;
+    if (filter === "completed") {
+        tasksForTodoList = tasks.filter(t => t.isDone === true)
     }
+
+    if (filter === "active") {
+        tasksForTodoList = tasks.filter(t => t.isDone === false)
+    }
+
     return (
         <div className="App">
             <TodoList
                 title={"Title 1"}
-                tasks={tasks}
+                tasks={tasksForTodoList}
                 removeTask={removeTask}
                 addTask={addTask}
-                filteredTasks={filteredTasks}
+                changeFilter={changeFilter}
             />
         </div>
     );
