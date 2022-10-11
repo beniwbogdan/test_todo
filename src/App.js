@@ -17,9 +17,9 @@ function App() {
         let filteredTasks = tasks.filter(t => t.id !== id)
         setTasks(filteredTasks);
     }
-    const addTask = () => {
-        let newTask = {id: v1(), title: "React", isDone: true};
-        setTasks([...tasks, newTask])
+    const addTask = (title) => {
+        let newTask = {id: v1(), title: title, isDone: true};
+        setTasks([newTask, ...tasks])
     }
     const changeFilter = (value) => {
         setFilter(value)
