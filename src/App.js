@@ -18,7 +18,7 @@ function App() {
         setTasks(filteredTasks);
     }
     const addTask = (title) => {
-        let newTask = {id: v1(), title: title, isDone: true};
+        let newTask = {id: v1(), title: title, isDone: false};
         setTasks([newTask, ...tasks])
     }
     const changeFilter = (value) => {
