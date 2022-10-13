@@ -24,7 +24,11 @@ function App() {
     const changeFilter = (value) => {
         setFilter(value)
     }
-
+    const changeStatus = (taskId, isDone) => {
+        let task = tasks.find(t => t.id === taskId);
+        task.isDone = isDone;
+        setTasks([...tasks])
+    }
     let tasksForTodoList = tasks;
     if (filter === "completed") {
         tasksForTodoList = tasks.filter(t => t.isDone === true)
@@ -42,6 +46,7 @@ function App() {
                 removeTask={removeTask}
                 addTask={addTask}
                 changeFilter={changeFilter}
+                changeStatus={changeStatus}
             />
         </div>
     );

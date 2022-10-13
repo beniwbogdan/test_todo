@@ -6,6 +6,7 @@ function TodoList(props) {
     const onChangeHandler = (e) => {
         setNewTaskTitle(e.currentTarget.value);
     }
+
     const onKeyDownHandler = (e) => {
         if (e.key === "Enter") {
             props.addTask(newTaskTitle);
@@ -13,8 +14,11 @@ function TodoList(props) {
         }
     }
     const onClickAddButtonHandler = () => {
+        if (newTaskTitle.trim() === "") return alert("write something");
         props.addTask(newTaskTitle);
         setNewTaskTitle("");
+
+
     }
     const onClickRemoveButtonHandler = (t) => {
         props.removeTask(t.id)
@@ -44,8 +48,15 @@ function TodoList(props) {
             <div className={'todo_elements'}>
                 <div className={'list'}>
                     {props.tasks.map((t) => {
+                        const onChangeSecondHandler = (e) => {
+                            props.changeStatus(t.id, e.currentTarget.checked);
+                        }
                         return <div>
-                            <input type={"checkbox"} id={t.id} checked={t.isDone}/>
+                            <input
+                                type={"checkbox"}
+                                id={t.id}
+                                checked={t.isDone}
+                                onChange={onChangeSecondHandler}/>
                             <span>{t.title}</span>
                             <button onClick={() => onClickRemoveButtonHandler(t)}>X
                             </button>
